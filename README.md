@@ -7,7 +7,7 @@ Stylish Legacy Application Slayer
 ## Install
 
 ```
-npm install intercept-booster
+npm install @k2works/intercept-booster
 ```
 
 ## Usage

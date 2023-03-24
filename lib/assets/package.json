@@ -1,7 +1,7 @@
 {
-  "name": "javascript-in-practice",
+  "name": "",
   "version": "1.0.0",
-  "description": "JavaScriptの実践的な使い方を学ぶためのリポジトリです。",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "npx gulp",
@@ -18,15 +18,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hiroshima-arc/javascript-in-practice.git"
+    "url": ""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/hiroshima-arc/javascript-in-practice/issues"
+    "url": ""
   },
-  "homepage": "https://github.com/hiroshima-arc/javascript-in-practice#readme",
+  "homepage": "",
   "devDependencies": {
     "@babel/cli": "^7.21.0",
     "@babel/core": "^7.21.3",

@@ -1,10 +1,10 @@
-# 実践 JavaScript
+# intercept-booster
 
-[![Node.js CI](https://github.com/hiroshima-arc/javascript-in-practice/actions/workflows/node.js.yml/badge.svg)](https://github.com/hiroshima-arc/javascript-in-practice/actions/workflows/node.js.yml)
+[![Node.js CI](https://github.com/k2works/intercept-booster-sample/actions/workflows/node.js.yml/badge.svg)](https://github.com/k2works/intercept-booster-sample/actions/workflows/node.js.yml)
 
 ## 概要
 
-JavaScript の実践的な使い方を学ぶためのリポジトリです。
+intercept-boosterのサンプルです。
 
 ### 目的
 

@@ -1,5 +1,5 @@
 {
-  "name": "intercept-booster",
+  "name": "@k2works/intercept-booster",
   "version": "0.1.0",
   "description": "Stylish Legacy Application Slayer",
   "main": "main.js",

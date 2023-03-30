@@ -12,7 +12,7 @@ intercept-boosterのサンプルです。
 
 | ソフトウェア | バージョン | 備考 |
 | :----------- | :--------- | :--- |
-| nodejs       | 16.x       |      |
+| nodejs       | 18.x       |      |
 
 ### Quick Start
 

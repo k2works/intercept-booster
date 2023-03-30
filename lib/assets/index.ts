@@ -1,3 +1,4 @@
+import "./src/style.css";
 import { App } from './src/app';
 const app = new App();
 

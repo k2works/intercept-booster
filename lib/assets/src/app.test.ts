@@ -1,6 +1,6 @@
-import { sum } from './app';
+import { sum } from "./app";
 
-test('adds 1 + 2 to equal 3', () => {
+test("adds 1 + 2 to equal 3", () => {
   const result = sum(1, 2);
   expect(result).toBe(3);
 });

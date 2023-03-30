@@ -102,6 +102,6 @@ dist
 
 # TernJS port file
 .tern-port
-.vercel
 
-/public
+public
+lib

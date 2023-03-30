@@ -368,7 +368,7 @@ TypeScript を使用することで、JavaScript に型を導入することが�
 1. TypeScript をインストールします。以下のコマンドを実行して、TypeScript をインストールしてください。
 
 ```bash
-npm install --save-dev typescript
+npm install --save-dev typescript @types/node
 ```
 
 2. tsconfig.json ファイルを作成します。以下のコマンドを実行して、tsconfig.json ファイルを作成してください。

@@ -36,6 +36,7 @@
     "@k2works/full-stack-lab": "^1.0.1",
     "@marp-team/marp-cli": "^2.4.0",
     "@types/jest": "^29.5.0",
+    "@types/node": "^18.15.11",
     "asciidoctor": "^2.2.6",
     "asciidoctor-kroki": "^0.17.0",
     "babel-loader": "^9.1.2",

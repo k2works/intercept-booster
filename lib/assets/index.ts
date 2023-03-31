@@ -24,6 +24,23 @@ ac --> UC3
 @enduml
 `;
 
+const ui = `
+@startsalt
+{+
+{* File | Edit | Source | Refactor
+ Refactor | New | Open File | - | Close | Close All }
+{/ General | Fullscreen | Behavior | Saving }
+{
+{ Open image in: | ^Smart Mode^ }
+[X] Smooth images when zoomed
+[X] Confirm image deletion
+[ ] Show hidden images
+}
+[Close]
+}
+@endsalt
+`
+
 const uml = `
 @startuml
 abstract class AbstractList
@@ -76,4 +93,4 @@ e01 ||..o{ e02
 e01 |o..o{ e03
 @enduml
 `;
-dev.render({ contents, usecase, uml, erd });
+dev.default({ contents, ui, usecase, uml, erd });

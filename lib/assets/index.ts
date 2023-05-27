@@ -189,5 +189,5 @@ e01 |o..o{ e03
 @enduml
 `;
 
-const mode = "APP"; // "UI" or "API"
+const mode = "APP"; // "UI" or "API" or "DOC"
 dev.default({ contents, ui, uiModel, uiInteraction, usecase, uml, erd, mode });

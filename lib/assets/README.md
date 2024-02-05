@@ -27,7 +27,7 @@ npm start
 - [構築](./docs/build.adoc)
 - [配置](./docs/ship.adoc)
 - [運用](./docs/run.adoc)
-- 開発
+- [開発](./docs/dev.adoc)
 
 ## 参照
 

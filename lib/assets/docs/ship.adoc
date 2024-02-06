@@ -71,11 +71,11 @@ GitHubは、GitリポジトリをホストするためのWebベースのホス�
 GitHub Actionsは、GitHubでホストされる継続的インテグレーション/継続的デプロイメント（CI/CD）サービスです。GitHub Actionsを使用すると、コードの変更を自動的にビルド、テスト、デプロイできます。
 
 ### GitHub Actionsのセットアップ
-1. リポジトリに`.github/workflows`ディレクトリを作成します。
+1. リポジトリに `.github/workflows` ディレクトリを作成します。
 
 2. ワークフローファイルを作成します。
 
-`node.js.yml`を作成します。
+`node.js.yml` を作成します。
 
 ```yml
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
@@ -120,20 +120,20 @@ Herokuは、クラウドプラットフォームであり、開発者がアプ�
 
 ### Herokuにアプリをデプロイする手順
 #### Heroku アカウントの作成
-1. [Heroku](https://www.heroku.com/)にアクセスして、アカウントを作成します。
+1. link:https://www.heroku.com/[Heroku]にアクセスして、アカウントを作成します。
 
 #### Heroku CLI のインストール
-1. [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)をダウンロードしてインストールします。
+1. link:https://devcenter.heroku.com/articles/heroku-cli[Heroku CLI]をダウンロードしてインストールします。
 
 #### Heroku アプリケーションの作成
 1. Herokuにログインします。
-2. `heroku create`コマンドを実行して、新しいアプリケーションを作成します。
+2. `heroku create` コマンドを実行して、新しいアプリケーションを作成します。
 
 ```bash
-heroku create jip-episode00
+heroku create sample-project
 ```
 
-3. HTTPサーバーを起動するために、パッケージをインストールして`Procfile`ファイルを作成します。
+3. HTTPサーバーを起動するために、パッケージをインストールして `Procfile` ファイルを作成します。
 
 ```bash
 npm install http-server
@@ -154,18 +154,44 @@ package.jsonに以下の内容を追加します。
 ```
 
 #### アプリケーションのデプロイ
-1. `git add .`コマンドを実行して、変更をステージングします。
-2. `git commit -m "Initial commit"`コマンドを実行して、変更をコミットします。
-3. `git push heroku master`コマンドを実行して、アプリケーションをデプロイします。
+1. `git add .` コマンドを実行して、変更をステージングします。
+2. `git commit -m "Initial commit"` コマンドを実行して、変更をコミットします。
+3. `git push heroku master` コマンドを実行して、アプリケーションをデプロイします。
 
 ```bash
-git push heroku episode/00:master
+git push heroku
 ```
 
-ここではmasterブランチ以外にもデプロイしています。
+mainブランチ以外をデプロイする場合は以下のコマンドを実行します。
+
+take01ブランチをデプロイする場合
+
+```bash
+git push heroku take01:master
+```
+
+別のアプリケーションを作ってデプロイする場合
+
+```bash
+heroku create sample-project-take01
+```
+
+`.git/config` に以下の内容を追加します。
+
+```bash
+[remote "heroku-take01"]
+  url = https://git.heroku.com/sample-project-take01.git
+  fetch = +refs/heads/*:refs/remotes/heroku/*
+```
+
+以下のコマンドを実行して別のアプリケーションにmain以外のブランチをデプロイします。
+
+```bash
+git push heroku-take01 take01:master
+```
 
 #### アプリケーションの起動
-1. `heroku open`コマンドを実行して、アプリケーションを起動します。
+1. `heroku open` コマンドを実行して、アプリケーションを起動します。
 
 ## Vercelとは
 Vercelは、サーバーレスのプラットフォームで、フロントエンドの開発者が簡単にWebサイトやアプリケーションをデプロイできるようにするものです。

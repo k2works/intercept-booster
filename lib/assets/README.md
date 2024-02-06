@@ -18,7 +18,7 @@ intercept-boosterのサンプルです。
 
 ```bash
 npm i @k2works/intercept-booster
-npx npx intercept-booster
+npx intercept-booster
 npm install
 npm start
 ```

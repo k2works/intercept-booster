@@ -5,8 +5,8 @@ const app = new App();
 const dev = require("@k2works/full-stack-lab");
 const contents = `
 ## 機能名
-## 仕様
 ## TODOリスト
+## 仕様
 `;
 
 const usecase = `

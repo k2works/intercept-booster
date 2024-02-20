@@ -393,7 +393,7 @@ describe("Lodash/fpの基本的な使い方", () => {
 
     test("fp.reduce", () => {
       expect(
-        fp.reduce((sum: number, data: number) => sum + data, 0)(dataList)
+        fp.reduce((sum: number, data: number) => sum + data, 0)(dataList),
       ).toBe(15);
     });
   });
@@ -453,7 +453,7 @@ describe("Lodash/fpの基本的な使い方", () => {
 
     test("fp.update", () => {
       expect(
-        fp.update("name", (name: string) => name.toUpperCase())(dataObject)
+        fp.update("name", (name: string) => name.toUpperCase())(dataObject),
       ).toEqual({
         name: "ALICE",
         age: 20,
@@ -471,7 +471,7 @@ describe("Lodash/fpの基本的な使い方", () => {
 
     test("fp.merge", () => {
       expect(
-        fp.merge({ city: "Los Angeles", country: "USA" })(dataObject)
+        fp.merge({ city: "Los Angeles", country: "USA" })(dataObject),
       ).toEqual({
         name: "Alice",
         age: 20,

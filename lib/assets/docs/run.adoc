@@ -17,53 +17,59 @@ NPMスクリプトは、Node.jsのパッケージマネージャであるnpmで�
 
 これらのツールを使用することで、エラーハンドリングやファイル操作などを簡単に処理することができます。特に、npm run scriptにおいて便利な機能を提供します。
 
-```
+[sources, bash]
+----
 npm install --save-dev npm-run-all cpx rimraf
-```
+----
 
 ## Gulpとは
 Gulpは、JavaScriptアプリケーションの開発、テスト、ビルド、デプロイなどのタスクを自動化するためのJavaScriptタスクランナーです。Gulpは、プラグインを使用して、JavaScript、CSS、画像などのファイルを処理できます。Gulpは、gulpfile.jsファイルに定義されたタスクを実行することができます。
 
 Gulpは、JavaScriptアプリケーションの開発、テスト、ビルド、デプロイなどのタスクを自動化するためのJavaScriptタスクランナーです。Gulpは、プラグインを使用して、JavaScript、CSS、画像などのファイルを処理できます。Gulpは、gulpfile.jsファイルに定義されたタスクを実行することができます。
 
-1. Gulpをインストールします
-
-```
+. Gulpをインストールします
++
+[sources, bash]
+----
 npm install --save-dev gulp
-```
-
-2. Gulpタスクを作成します
-
-```javascript
+----
++
+. Gulpタスクを作成します
++
+[sources, javascript]
+----
 function defaultTask(cb) {
   // place code for your default task here
   cb();
 }
 
 exports.default = defaultTask
-```
-
-3. Gulpタスクを実行します
-
-```
+----
++
+. Gulpタスクを実行します
++
+[sources, bash]
+----
 npx gulp --tasks
 npx gulp
-```
+----
 
 ## Asciidocとは
 Asciidocは、テキストベースのドキュメントフォーマットであり、HTML、PDF、EPUBなどのフォーマットに変換できます。Asciidocは、ドキュメントの構造を定義するためのマークアップ言語であり、テキストエディタで編集できます。Asciidocは、Node.jsのパッケージマネージャであるnpmで提供されています。
 
-1. Asciidocをインストールします
-
-```
+. Asciidocをインストールします
++
+[sources, bash]
+----
 npm install --save-dev asciidoctor asciidoctor-kroki
-```
-
-2. Asciidocファイルを作成します
-
+----
++
+. Asciidocファイルを作成します
++
 `docs` ディレクトリに `index.adoc` と `sample.adoc` ファイルを作成し、以下の内容を記述します。
-
-```asciidoc
++
+[sources, asciidoc]
+----
 :toc: left
 :toclevels: 5
 :sectnums:
@@ -81,9 +87,10 @@ npm install --save-dev asciidoctor asciidoctor-kroki
 == 参照
 
 * link:/docs/sample.html[サンプル^]
-```
-
-```asciidoc
+----
++
+[sources, asciidoc]
+----
 :toc: left
 :toclevels: 5
 :sectnums:
@@ -102,7 +109,7 @@ npm install --save-dev asciidoctor asciidoctor-kroki
 
 === ユースケース図
 [plantuml]
-----
+`----
 left to right direction
 skinparam packageStyle rectangle
 actor customer
@@ -113,20 +120,20 @@ rectangle checkout {
   (help) .> (checkout) : extends
   (checkout) -- clerk
 }
-----
+`----
 
 === クラス図
 [plantuml]
-----
+`----
 class Car
 Driver - Car : drives >
 Car *- Wheel : have 4 >
 Car -- Person : < owns
-----
+`----
 
 === シーケンス図
 [plantuml]
-----
+`----
 participant User
 User -> A: DoWork
 activate A
@@ -140,7 +147,7 @@ B --> A: RequestCreated
 deactivate B
 A -> User: Done
 deactivate A
-----
+`----
 
 === 数式
 
@@ -160,11 +167,14 @@ latexmath:[C = \alpha + \beta Y^{\gamma} + \epsilon]
 == 開発
 
 == 参照
-```
-
-3. Gulpタスクを作成します
-
-```js
+----
++
+`'----` は `----` に変更してください。
++
+. Gulpタスクを作成します
++
+[sources, javascript]
+----
 const { series } = require("gulp");
 const { default: rimraf } = require("rimraf");
 
@@ -207,32 +217,36 @@ const asciidoctor = {
 }
 
 exports.docs = series(asciidoctor.clean, asciidoctor.build);
-```
-
-4. Gulpタスクを実行します
-
-```
+----
++
+. Gulpタスクを実行します
++
+[source, bash]
+----
 npx gulp docs
-```
-
+----
++
 `public` ディレクトリはgit管理対象外にするため.gitignoreに以下を追加します。
-
-```
++
+[sources, file]
+----
 /public
-```
+----
 
 ## BrowserSyncとは
 BrowserSyncは、ブラウザーの自動リロード、CSSのインジェクション、デバイス同期などの機能を提供するJavaScriptライブラリです。BrowserSyncは、gulpfile.jsファイルに定義されたタスクを実行することができます。
 
-1. BrowserSyncをインストールします
-
-```
+. BrowserSyncをインストールします
++
+[sources, bash]
+----
 npm install --save-dev browser-sync
-```
-
-2. Gulpタスクを変更します
-
-```js
+----
++
+. Gulpタスクを変更します
++
+[sources, javascript]
+----
 function defaultTask(cb) {
   // place code for your default task here
   cb();
@@ -292,30 +306,33 @@ const asciidoctor = {
 }
 
 exports.docs = series(asciidoctor.clean, asciidoctor.build, asciidoctor.watch, asciidoctor.server)
-```
-
-3. Gulpタスクを実行します
-
-```
+----
++
+. Gulpタスクを実行します
++
+[source, bash]
+----
 npx gulp docs
-```
-
+----
++
 これで、adocファイルを編集するたびにドキュメントがビルドされブラウザが自動でリロードされます。
 
 ## Marpとは
 Marpは、Markdownを使用してスライドを作成するためのJavaScriptアプリケーションです。Marpは、スライドのデザインをカスタマイズするためのテーマを提供し、PDF、HTML、PNGなどのフォーマットにエクスポートできます。Marpは、Node.jsのパッケージマネージャであるnpmで提供されています。
 
-1. Marpをインストールします
-
-```
+. Marpをインストールします
++
+[sources, bash]
+----
 npm install --save-dev @marp-team/marp-cli
-```
-
-2. スライドを作成します
-
+----
++
+. スライドを作成します
++
 `./docs/slides/PITCHME.md`
-
-```md
++
+[sources, markdown]
+----
 ---
 marp: true
 ---
@@ -356,17 +373,19 @@ marp: true
 ### 参照
 
 ---
-```
-
-3. スライドをビルドします
-
-```
+----
++
+. スライドをビルドします
++
+[source, bash]
+----
 npx marp --html --pdf ./docs/slides/PITCHME.md
-```
-
-4. Gulpタスクを追加します
-
-```js
+----
++
+. Gulpタスクを追加します
++
+[sources, javascript]
+----
 marp = {
   build: (cb) => {
     const { marpCli } = require('@marp-team/marp-cli')
@@ -393,20 +412,22 @@ marp = {
 }
 
 exports.slides = series(marp.build);
-```
-
-5. Gulpタスクを実行します
-
-```
+----
++
+. Gulpタスクを実行します
++
+[source, bash]
+----
 npx gulp slides
-```
+----
 
 ## 既存のnpmタスクを統合する
 既存のnpmタスクを統合するには、gulpfile.jsファイルにタスクを定義し、npmスクリプトを使用してタスクを実行します。タスクは、JavaScript関数として定義され、gulpプラグインを使用して、JavaScript、CSS、画像などのファイルを処理できます。
 
-1. webpackのタスクを追加します
-
-```js
+. webpackのタスクを追加します
++
+[sources, javascript]
+----
 const webpack = {
   clean: async (cb) => {
     await rimraf("./public");
@@ -448,11 +469,12 @@ const webpack = {
     cb();
   },
 }
-```
-
-2. jestのタスクを追加します
-
-```js
+----
++
+. jestのタスクを追加します
++
+[sources, javascript]
+----
 const jest = {
   test: (cb) => {
     const jest = require("jest");
@@ -465,15 +487,17 @@ const jest = {
     cb();
   },
 }
-```
-
-3. prettierのタスクを追加します
-
-```bash
+----
++
+. prettierのタスクを追加します
++
+[sources, bash]
+----
 npm install gulp-prettier --save-dev
-```
-
-```js
+----
++
+[sources, javascript]
+----
 const prettier = {
   format: (cb) => {
     const prettier = require('gulp-prettier');
@@ -486,11 +510,12 @@ const prettier = {
     cb();
   },
 };
-```
-
-4. 既存のタスクと統合します
-
-```js
+----
++
+. 既存のタスクと統合します
++
+[sources, javascript]
+----
 const { series, parallel, watch } = require("gulp");
 
 ....
@@ -539,11 +564,12 @@ exports.docs = series(
 );
 
 exports.watch = parallel(webpack.watch, asciidoctor.watch, marp.watch, jest.watch);
-```
-
-5. package.jsonのscriptsを更新します
-
-```json
+----
++
+. package.jsonのscriptsを更新します
++
+[sources, json]
+----
 {
   "scripts": {
     "start": "npx gulp",
@@ -556,11 +582,12 @@ exports.watch = parallel(webpack.watch, asciidoctor.watch, marp.watch, jest.watc
     "heroku-postbuild": "webpack --config ./webpack.config.js --progress"
   },
 }
-```
-
-6. デプロイタスクを追加します
-
-```json
+----
++
+. デプロイタスクを追加します
++
+[sources, json]
+----
 {
   "scripts": {
     "start": "npx gulp",
@@ -576,10 +603,11 @@ exports.watch = parallel(webpack.watch, asciidoctor.watch, marp.watch, jest.watc
     "heroku-postbuild": "webpack --config ./webpack.config.js --progress"
   },
 }
-```
-
-7. npmタスクからgulpのdefaultタスクを実行します。
-
-```bash
+----
++
+. npmタスクからgulpのdefaultタスクを実行します。
++
+[sources, bash]
+----
 npm start
-```
+----

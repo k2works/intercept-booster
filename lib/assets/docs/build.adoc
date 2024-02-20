@@ -16,84 +16,93 @@ JavaScript 開発環境を構築するためには、以下の手順を実行し
 
 #### バージョンマネージャーのセットアップ
 
-1. NVM をインストールします。NVM は、Node.js のバージョンを管理するためのツールです。以下のコマンドを実行して、NVM をインストールしてください。
-
-```bash
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
-```
-
-2. npm をインストールします。npm は、Node.js のパッケージマネージャーです。以下のコマンドを実行して、npm をインストールしてください。
-
-```bash
+. NVM をインストールします。NVM は、Node.js のバージョンを管理するためのツールです。以下のコマンドを実行して、NVM をインストールしてください。
++
+[source,bash]
+----
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0...0/install.sh | bash
+----
++
+. npm をインストールします。npm は、Node.js のパッケージマネージャーです。以下のコマンドを実行して、npm をインストールしてください。
++
+[source,bash]
+----
 nvm list
-nvm install 16.10.1
+nvm install ....1
 npm -v
-```
-
-3. yarn をインストールします。yarn は、npm の代替となるパッケージマネージャーです。以下のコマンドを実行して、yarn をインストールしてください。
-
-```bash
+----
++
+. yarn をインストールします。yarn は、npm の代替となるパッケージマネージャーです。以下のコマンドを実行して、yarn をインストールしてください。
++
+[source,bash]
+----
 npm install -g yarn
 yarn -v
-```
-
-4. ターミナルを再起動します。
+----
++
+. ターミナルを再起動します。
 
 #### トランスパイラ
 
-トランスパイラを使用することで、ES6 以降の構文を ES5 に変換することができます。以下の手順でトランスパイラをセットアップしてください。
+トランスパイラを使用することで、ES.以降の構文を ES.に変換することができます。以下の手順でトランスパイラをセットアップしてください。
 
 #### トランスパイラのセットアップ
 
-1. package.json ファイルを作成します。以下のコマンドを実行して、package.json ファイルを作成してください。
-
-```bash
+. package.json ファイルを作成します。以下のコマンドを実行して、package.json ファイルを作成してください。
++
+[source,bash]
+----
 npm init -y
-```
-
+----
++
 -y オプションを指定することで、package.json ファイルの内容をデフォルト値で作成することができます。
-
-1. Babel をインストールします。Babel は、トランスパイラの一つです。以下のコマンドを実行して、Babel をインストールしてください。
-
-```bash
++
+. Babel をインストールします。Babel は、トランスパイラの一つです。以下のコマンドを実行して、Babel をインストールしてください。
++
+[source,bash]
+----
 npm install --save-dev @babel/core @babel/cli @babel/preset-env
-```
-
+----
++
 --save-dev オプションを指定することで、package.json ファイルの devDependencies にパッケージを追加することができます。
-
-2. .babelrc ファイルを作成します。以下のコマンドを実行して、.babelrc ファイルを作成してください。
-
-```bash
++
+. .babelrc ファイルを作成します。以下のコマンドを実行して、.babelrc ファイルを作成してください。
++
+[source,bash]
+----
 touch .babelrc
-```
-
-3. .babelrc ファイルに以下の内容を記述してください。
-
-```json
+----
++
+. .babelrc ファイルに以下の内容を記述してください。
++
+[source,json]
+----
 {
   "presets": ["@babel/preset-env"]
 }
-```
+----
 
 #### トランスパイラの設定
 
-1. package.json ファイルを開き、以下の内容を追加してください。
-
-```json
+. package.json ファイルを開き、以下の内容を追加してください。
++
+[source,json]
+----
 {
   "scripts": {
     "build": "babel src -d dist"
   }
 }
-```
+----
 
 scripts には、npm コマンドを登録することができます。今回は、build コマンドを登録しています。build コマンドは、src ディレクトリの JavaScript ファイルをトランスパイルして、dist ディレクトリに出力するコマンドです。
 
 #### トランスパイラの実行
 
-1. src ディレクトリを作成して、index.js ファイルを作成します。
-
-```JavaScript
+. src ディレクトリを作成して、index.js ファイルを作成します。
++
+[source,javascript]
+----
 // テンプレートリテラル
 const name = 'John Doe';
 const message = `Hello, ${name}!`;
@@ -129,17 +138,19 @@ class Person {
     return `${this.firstName} ${this.lastName}`;
   }
 }
-```
-
-2. 以下のコマンドを実行して、トランスパイルを実行してください。
-
-```bash
+----
++
+. 以下のコマンドを実行して、トランスパイルを実行してください。
++
+[source,bash]
+----
 npm run build
-```
-
-3. ES6 以降の構文が ES5 に変換されていることを確認してください。
-
-```JavaScript
+----
++
+. ES.以降の構文が ES.に変換されていることを確認してください。
++
+[source,javascript]
+----
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
@@ -190,7 +201,7 @@ var Person = /*#__PURE__*/function () {
   }]);
   return Person;
 }();
-```
+----
 
 ### モジュールバンドラー
 
@@ -198,24 +209,26 @@ var Person = /*#__PURE__*/function () {
 
 #### モジュールバンドラーのセットアップ
 
-1. Webpack をインストールします。Webpack は、モジュールバンドラーの一つです。以下のコマンドを実行して、Webpack をインストールしてください。
-
-```bash
+. Webpack をインストールします。Webpack は、モジュールバンドラーの一つです。以下のコマンドを実行して、Webpack をインストールしてください。
++
+[source,bash]
+----
 npm install --save-dev webpack webpack-cli
 npx webpack --version
-```
-
+----
 npx コマンドは、npm パッケージを実行するためのコマンドです。npx コマンドを使用することで、ローカルにインストールされている npm パッケージを実行することができます。
-
-2. webpack.config.js ファイルを作成します。以下のコマンドを実行して、webpack.config.js ファイルを作成してください。
-
-```bash
++
+. webpack.config.js ファイルを作成します。以下のコマンドを実行して、webpack.config.js ファイルを作成してください。
++
+[source,bash]
+----
 touch webpack.config.js
-```
-
-3. webpack.config.js ファイルに以下の内容を記述してください。
-
-```javascript
+----
++
+. webpack.config.js ファイルに以下の内容を記述してください。
++
+[source,javascript]
+----
 module.exports = {
   mode: 'development',
   entry: './src/index.js',
@@ -224,57 +237,63 @@ module.exports = {
     filename: 'bundle.js',
   },
 };
-```
-
-4. package.json ファイルに以下の内容に変更してください。
-
-```json
+----
++
+. package.json ファイルに以下の内容に変更してください。
++
+[source,json]
+----
 {
   "scripts": {
     "build": "webpack"
   }
 }
-```
+----
 
 #### モジュールバンドラーの実行
 
-1. ./src/sample_es5.js ファイルを作成してください。
-
-```JavaScript
+. ./src/sample_es.js ファイルを作成してください。
++
+[source,javascript]
+----
 function greeting(name) {
   return 'Hello ' + name;
 }
 
 module.exports = greeting;
-```
+----
++
+. ./src/index.js ファイルを変更してください。
++
+[source,javascript]
+----
+var greeting = require('./sample_es.);
 
-2. ./src/index.js ファイルを変更してください。
-
-```JavaScript
-var greeting = require('./sample_es5');
-
-console.log(greeting('ES5'));
-```
-
-3. 以下のコマンドを実行して、モジュールバンドラーを実行してください。
-
-```bash
+console.log(greeting('ES.));
+----
++
+. 以下のコマンドを実行して、モジュールバンドラーを実行してください。
++
+[source,bash]
+----
 npm run build
-```
-
-4. ./dist/bundle.js ファイルが作成されていることを確認してください。
-
-5. ./dist/bundle.js ファイルを実行してください。
-
-```bash
+----
++
+. ./dist/bundle.js ファイルが作成されていることを確認してください。
++
+. ./dist/bundle.js ファイルを実行してください。
++
+[source,bash]
+----
 node ./dist/bundle.js
-```
+----
 
 #### モジュールバンドラーの設定
 
-1. ./src/sample_es6.js ファイルを作成してください。
-
-```JavaScript
+. ./src/sample_es.js ファイルを作成してください。
++
+[source,javascript]
+----
 class Greeting {
   constructor(name) {
     this.name = name;
@@ -285,40 +304,45 @@ class Greeting {
 }
 
 export default Greeting;
-```
+----
++
+. ./src/index.js ファイルを変更してください。
++
+[source,javascript]
+----
+var greeting = require('./sample_es.);
+console.log(greeting('ES.));
 
-2. ./src/index.js ファイルを変更してください。
-
-```JavaScript
-var greeting = require('./sample_es5');
-console.log(greeting('ES5'));
-
-var greet = require('./sample_es6');
-var g = new greet.default('ES6');
+var greet = require('./sample_es.);
+var g = new greet.default('ES.);
 g.say();
-```
-
-3. 以下のコマンドを実行して、モジュールバンドラーを実行してください。
-
-```bash
+----
++
+. 以下のコマンドを実行して、モジュールバンドラーを実行してください。
++
+[source,bash]
+----
 npm run build
-```
-
-4. ./dist/bundle.js ファイルが作成されていることを確認してください。
-
-5. ./dist/bundle.js ファイルを実行してください。
-
-```bash
+----
++
+. ./dist/bundle.js ファイルが作成されていることを確認してください。
++
+. ./dist/bundle.js ファイルを実行してください。
++
+[source,bash]
+----
 node ./dist/bundle.js
-```
-
-6. 現状では ES6 のコードをそのまま出力しています。ES5 に変換するためには、babel-loader を使用します。 パッケージをインストールして webpack.config.js に以下のコードを変更してください。
-
-```bash
+----
++
+. 現状では ES.のコードをそのまま出力しています。ES.に変換するためには、babel-loader を使用します。 パッケージをインストールして webpack.config.js に以下のコードを変更してください。
++
+[source,bash]
+----
 npm install --save-dev babel-loader
-```
-
-```javascript
+----
++
+[source,javascript]
+----
 module.exports = {
   mode: 'development',
   entry: './src/index.js',
@@ -341,23 +365,25 @@ module.exports = {
       },
     ],
   },
-  target: ['web', 'es5'],
+  target: ['web', 'es.],
 };
-```
-
-7. 以下のコマンドを実行して、モジュールバンドラーを実行してください。
-
-```bash
+----
++
+. 以下のコマンドを実行して、モジュールバンドラーを実行してください。
++
+[source,bash]
+----
 npm run build
-```
-
-8. ./dist/bundle.js ファイルが作成されていることを確認してください。
-
-9. ./dist/bundle.js ファイルを実行してください。
-
-```bash
+----
++
+. ./dist/bundle.js ファイルが作成されていることを確認してください。
++
+. ./dist/bundle.js ファイルを実行してください。
++
+[source,bash]
+----
 node ./dist/bundle.js
-```
+----
 
 ### TypeScript
 
@@ -365,29 +391,33 @@ TypeScript を使用することで、JavaScript に型を導入することが�
 
 #### TypeScript のセットアップ
 
-1. TypeScript をインストールします。以下のコマンドを実行して、TypeScript をインストールしてください。
-
-```bash
+. TypeScript をインストールします。以下のコマンドを実行して、TypeScript をインストールしてください。
++
+[source,bash]
+----
 npm install --save-dev typescript @types/node
-```
-
-2. tsconfig.json ファイルを作成します。以下のコマンドを実行して、tsconfig.json ファイルを作成してください。
-
-```bash
+----
++
+. tsconfig.json ファイルを作成します。以下のコマンドを実行して、tsconfig.json ファイルを作成してください。
++
+[source,bash]
+----
 npx tsc --init
-```
+----
 
 #### トランスパイラの設定
 
-1. 必要なパッケージをインストールします。
-
-```bash
+. 必要なパッケージをインストールします。
++
+[source,bash]
+----
 npm install --save-dev @babel/preset-typescript @babel/plugin-proposal-class-properties typescript
-```
-
-2. .babelrc ファイルを変更します。
-
-```bash
+----
++
+. .babelrc ファイルを変更します。
++
+[source,json]
+----
 {
   "presets": [
     "@babel/preset-env",
@@ -395,55 +425,61 @@ npm install --save-dev @babel/preset-typescript @babel/plugin-proposal-class-pro
   ],
   "plugins": ["@babel/plugin-proposal-class-properties"]
 }
-```
+----
 
 #### トランスパイラの実行
 
-1. ./src/sample.ts ファイルを作成してください。
-
-```TypeScript
+. ./src/sample.ts ファイルを作成してください。
++
+[source,typescript]
+----
 class Greeting {
   constructor(public name: string) {}
   say() {
     console.log(`Hello ${this.name}`);
   }
 }
-```
-
-2. ./src/index.ts ファイルを変更してください。
-
-```TypeScript
+----
++
+. ./src/index.ts ファイルを変更してください。
++
+[source,typescript]
+----
 import { Greeting } from "./sample";
 
 const greeting = new Greeting("TypeScript");
 greeting.say();
-```
-
-3. 以下のコマンドを実行して、トランスパイルを実行してください。
-
-```bash
+----
++
+. 以下のコマンドを実行して、トランスパイルを実行してください。
++
+[source, bash]
+----
 npx babel src --extensions '.ts,.tsx' --out-dir dist
-```
-
-4. ./dist/sample.js ファイルが作成されていることを確認してください。
-
-5. ./dist/sample.js ファイルを実行してください。
-
-```bash
+----
++
+. ./dist/sample.js ファイルが作成されていることを確認してください。
++
+. ./dist/sample.js ファイルを実行してください。
++
+[source, bash]
+----
 node ./dist/index.js
-```
+----
 
 #### モジュールバンドラーの設定
 
-1. 必要なパッケージをインストールします。
-
-```bash
+. 必要なパッケージをインストールします。
++
+[source, bash]
+----
 npm install --save-dev ts-loader
-```
-
-2. webpack.config.js ファイルを開き、以下の内容を追加してください。
-
-```javascript
+----
++
+. webpack.config.js ファイルを開き、以下の内容を追加してください。
++
+[source,javascript]
+----
 module.exports = {
   mode: 'development',
   entry: './src/index.ts',
@@ -473,35 +509,39 @@ module.exports = {
       },
     ],
   },
-  target: ['web', 'es5'],
+  target: ['web', 'es.],
 };
-```
-
-3. 以下のコマンドを実行して、モジュールバンドラーを実行してください。
-
-```bash
+----
++
+. 以下のコマンドを実行して、モジュールバンドラーを実行してください。
++
+[source, bash]
+----
 npm run build
-```
-
-4. ./dist/bundle.js ファイルが作成されていることを確認してください。
-
-5. ./dist/bundle.js ファイルを実行してください。
-
-```bash
+----
++
+. ./dist/bundle.js ファイルが作成されていることを確認してください。
++
+. ./dist/bundle.js ファイルを実行してください。
++
+[source, bash]
+----
 node ./dist/bundle.js
-```
-
+----
++
 TypeScript ファイルをそのまま実行したい場合は、ts-node を使用します。
-
-```bash
++
+[source, bash]
+----
 npm install --save-dev ts-node
-```
-
+----
++
 動かし方は以下の通りです。
-
-```bash
++
+[source, bash]
+----
 npx ts-node src/index.ts
-```
+----
 
 ### webpack-dev-server のセットアップ
 
@@ -509,17 +549,19 @@ webpack-dev-server を使用することで、開発中に自動的にビルド�
 
 #### webpack-dev-server のインストール
 
-1. 以下のコマンドを実行して、webpack-dev-server をインストールしてください。
-
-```bash
+. 以下のコマンドを実行して、webpack-dev-server をインストールしてください。
++
+[source, bash]
+----
 npm install --save-dev webpack-dev-server
-```
+----
 
 #### webpack-dev-server の設定
 
-1. webpack.config.js ファイルを開き、以下の内容を追加してください。
-
-```javascript
+. webpack.config.js ファイルを開き、以下の内容を追加してください。
++
+[source,javascript]
+----
 const path = require('path');
 
 module.exports = {
@@ -532,42 +574,47 @@ module.exports = {
     port: 9000,
   },
 };
-```
+----
 
 #### webpack-dev-server の実行
 
-1. 以下のコマンドを実行して、webpack-dev-server を実行してください。
-
-```bash
+. 以下のコマンドを実行して、webpack-dev-server を実行してください。
++
+[source, bash]
+----
 npx webpack serve
-```
-
+----
++
 終了する場合は、Ctrl + C を押してください。
-
-2. HTMLWebpackPlugin プラグインを使用して js ファイルに自動的にバンドルされた script タグを生成し、index.html に挿入できるようにします。
-
-```bash
++
+. HTMLWebpackPlugin プラグインを使用して js ファイルに自動的にバンドルされた script タグを生成し、index.html に挿入できるようにします。
++
+[source, bash]
+----
 npm install --save-dev html-webpack-plugin
-```
-
-3. プロジェクト直下に index.html を作成してください。
-
-```html
+----
++
+. プロジェクト直下に index.html を作成してください。
++
+[source, html]
+----
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>App</title>
   </head>
   <body>
-    <h1>アプリケーション</h1>
+    <h.アプリケーション</h.
   </body>
 </html>
-```
-
-4. webpack.config.js ファイルを開き、以下の内容を追加してください。
-
-```javascript
+----
++
+. webpack.config.js ファイルを開き、以下の内容を追加してください。
++
+[source,javascript]
+----
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -579,28 +626,31 @@ module.exports = {
     }),
   ],
 };
-```
-
-5. package.json ファイルを開き、以下の内容を追加してください。
-
-```json
+----
++
+. package.json ファイルを開き、以下の内容を追加してください。
++
+[source,json]
+----
 {
   // ...他の設定
   "scripts": {
     "start": "webpack server --config ./webpack.config.js --open"
   }
 }
-```
-
-6. 以下のコマンドを実行して、webpack-dev-server を実行してください。
-
-```bash
+----
++
+. 以下のコマンドを実行して、webpack-dev-server を実行してください。
++
+[source, bash]
+----
 npm start
-```
-
-7. ソースマップを有効にすることで、開発中にエラーが発生した場合に、エラーが発生したファイル名と行数を表示することができます。
-
-```javascript
+----
++
+. ソースマップを有効にすることで、開発中にエラーが発生した場合に、エラーが発生したファイル名と行数を表示することができます。
++
+[source, javascript] 
+----
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
@@ -610,26 +660,30 @@ const isDevelopment = env === "development";
 module.exports = {
   mode: env,
   devtool: isDevelopment ? "source-map" : false,
-```
-
-8. TypeScript の型チェックを実行するために、tsconfig.json に以下の設定を追加してください。
-
-```json
+----
++
+. TypeScript の型チェックを実行するために、tsconfig.json に以下の設定を追加してください。
++
+[source, json]
+----
 {
   "compilerOptions": {
     "sourceMap": true
   }
 }
-```
-
-9. CSSサポートを追加します。
-
-```
+----
++
+. CSSサポートを追加します。
++
+[source, bash]
+----
 npm install --save-dev style-loader css-loader
-```
-
+----
++
 `webpack.config.js`
-```javascript
++
+[source, javascript]
+----
 module.exports = {
   // ...他のWebpack設定
 
@@ -651,12 +705,14 @@ module.exports = {
     ]
   }
 };
-```
-
+----
++
 `index.js`
-```javascript
++
+[source, javascript]
+----
 import "./style.css";
-```
+----
 
 
 ### テスティングフレームワークのセットアップ
@@ -669,27 +725,30 @@ Jest は、JavaScript のテスティングフレームワークです。以下�
 
 #### Jest のインストール
 
-1. 以下のコマンドを実行して、Jest をインストールしてください。
-
-```bash
+. 以下のコマンドを実行して、Jest をインストールしてください。
++
+[source, bash]
+----
 npm install --save-dev jest
-```
+----
 
 #### Jest の設定
 
-1. package.json ファイルを開き、以下の内容を追加してください。
-
-```json
+. package.json ファイルを開き、以下の内容を追加してください。
++
+[source, json]
+----
 {
   "scripts": {
     "test": "jest"
   }
 }
-```
-
-2. ES Modules を私用している場合はテストが失敗するので以下の設定を package.json に追加する
-
-```json
+----
++
+. ES Modules を私用している場合はテストが失敗するので以下の設定を package.json に追加する
++
+[source, json]
+----
 ...
   "jest": {
     "moduleFileExtensions": [
@@ -702,77 +761,85 @@ npm install --save-dev jest
     ]
   }
 }
-```
+----
 
 #### TypeScript 対応
 
-1. 以下のコマンドを実行して、必要なパッケージをインストールしてください。
-
-```bash
+. 以下のコマンドを実行して、必要なパッケージをインストールしてください。
++
+[source, bash]
+----
 npm install --save-dev @types/jest ts-jest
-```
-
-2. tsconfig.json ファイルを開き、以下の内容を追加してください。
-
-```json
-"module": "es2020",
-```
+----
++
+. tsconfig.json ファイルを開き、以下の内容を追加してください。
++
+[source, json]
+----
+"module": "es..",
+----
 
 #### テストの作成
 
-1. テストファイルを作成してください。
-
+. テストファイルを作成してください。
++
 `src/app.js`
-
-```javascript
++
+[source, javascript]
+----
 export function sum(a, b) {
   return a + b;
 }
-```
-
+----
++
 `src/app.test.js`
-
-```javascript
++
+[source, javascript]
+----
 import { sum } from './app.js';
 
-test('adds 1 + 2 to equal 3', () => {
-  const result = sum(1, 2);
-  expect(result).toBe(3);
+test('adds .+ .to equal ., () => {
+  const result = sum(. .;
+  expect(result).toBe(.;
 });
-```
-
+----
++
 `src/app.ts`
-
-```typescript
++
+[source, typescript]
+----
 export function sum(a: number, b: number): number {
   return a + b;
 }
-```
-
+----
++
 `src/app.test.ts`
-
-```typescript
++
+[source, typescript]
+----
 import { sum } from './app';
 
-test('adds 1 + 2 to equal 3', () => {
-  const result = sum(1, 2);
-  expect(result).toBe(3);
+test('adds .+ .to equal ., () => {
+  const result = sum(. .;
+  expect(result).toBe(.;
 });
-```
+----
 
 #### テストの実行
 
-1. 以下のコマンドを実行して、テストを実行してください。
-
-```bash
+. 以下のコマンドを実行して、テストを実行してください。
++
+[source, bash]
+----
 npm test
-```
-
-2. テストカバレッジを計測することで、テストがどの程度の範囲をカバーしているかを確認することができます。
-
-```json
-    "test": "jest --coverage"
-```
+----
++
+. テストカバレッジを計測することで、テストがどの程度の範囲をカバーしているかを確認することができます。
++
+[source, bash]
+----
+   "test": "jest --coverage"
+----
 
 ### フォーマッタのセットアップ
 
@@ -784,17 +851,19 @@ Prettier は、コードのフォーマットを自動化するツールです�
 
 #### パッケージのインストール
 
-1. 以下のコマンドを実行して、Prettier をインストールしてください。
-
-```bash
+. 以下のコマンドを実行して、Prettier をインストールしてください。
++
+[source, bash]
+----
 npm install --save-dev prettier
-```
+----
 
 #### パッケージの設定
 
-1. .prettierrc ファイルを作成し、以下の内容を記述してください。
-
-```json
+. .prettierrc ファイルを作成し、以下の内容を記述してください。
++
+[source, json]
+----
 {
   "semi": true,
   "trailingComma": "all",
@@ -802,25 +871,27 @@ npm install --save-dev prettier
   "printWidth": 80,
   "tabWidth": 2
 }
-```
+----
 
 #### フォーマッタの実行
 
-1. 以下のコマンドを実行して、フォーマッタを実行してください。
-
-```bash
+. 以下のコマンドを実行して、フォーマッタを実行してください。
++
+[source, bash]
+----
 npx prettier --write .
-```
+----
 
-2. package.json ファイルを開き、以下の内容を追加してください。
-
-```json
+. package.json ファイルを開き、以下の内容を追加してください。
++
+[source, json]
+----
 {
   "scripts": {
     "format": "prettier --write ."
   }
 }
-```
+----
 
 ### 開発ツールのセットアップ
 
@@ -828,15 +899,17 @@ npx prettier --write .
 
 #### パッケージのインストール
 
-1. 以下のコマンドを実行して、開発ツールをインストールしてください。
-
-```bash
+. 以下のコマンドを実行して、開発ツールをインストールしてください。
++
+[source, bash]
+----
 npm install --save-dev @k2works/full-stack-lab
-```
-
+----
++
 `./index.html` を以下の内容に変更します。
-
-```html
++
+[source, html]
+----
 <!DOCTYPE html>
 <html lang="ja">
   <head>
@@ -844,16 +917,17 @@ npm install --save-dev @k2works/full-stack-lab
     <title>App</title>
   </head>
   <body>
-    <h1>アプリケーション</h1>
+    <h.アプリケーション</h.
     <div id="app"></div>
     <div id="app-dev"></div>
   </body>
 </html>
-```
-
+----
++
 `./src/app.js` を以下の内容に変更します。
-
-```javascript
++
+[source, javascript]
+----
 console.log('app.js: loaded');
 export class App {
   constructor() {
@@ -864,14 +938,12 @@ export class App {
 export function sum(a, b) {
   return a + b;
 }
-```
-
+----
++
 `./src/index.js` をルート直下に移動して以下の内容変更します。
-
-```javascript
-import { App } from './src/app.js';
-const app = new App();
-
++
+[source, javascript]
+----
 import render from "@k2works/full-stack-lab";
 const contents = `
 ## 機能名
@@ -893,6 +965,23 @@ ac --> UC2
 ac --> UC3
 @enduml
 `;
+
+const ui = `
+@startsalt
+{+
+{* File | Edit | Source | Refactor
+ Refactor | New | Open File | - | Close | Close All }
+{/ General | Fullscreen | Behavior | Saving }
+{
+{ Open image in: | ^Smart Mode^ }
+[X] Smooth images when zoomed
+[X] Confirm image deletion
+[ ] Show hidden images
+}
+[Close]
+}
+@endsalt
+`
 
 const uml = `
 @startuml
@@ -946,69 +1035,77 @@ e01 ||..o{ e02
 e01 |o..o{ e03
 @enduml
 `;
-render({ contents, usecase, uml, erd });
-`;
-render({ contents, uml, erd });
-```
-
-2. TypScript も同様に変更してください。
-
-importの部分は以下のように変更してください。
-
-```javascript
-const dev = require('@k2works/full-stack-lab');
-...
-dev.render({ contents, usecase, uml, erd });
-```
-
-3. 最後に不要なファイルを削除します。
+render({ contents, ui, usecase, uml, erd });
+----
++
+. 最後に不要なファイルを削除します。
 
 #### 開発ツールの設定
 
-1. webpack.config.js を以下の内容に変更します。
-
-```javascript
+. webpack.config.js を以下の内容に変更します。
++
+[source, javascript]
+----
 ...
   entry: './index.js',
 ...
-```
+----
++
+TypeScriptを使用したい場合は以下の設定に変更します。
++
+[source, javascript]
+----
+...
+  entry: './index.ts',
+...
+----
 
 #### 開発ツールの実行
 
-1. 以下のコマンドを実行して、開発ツールを実行してください。
-
-```bash
+. 以下のコマンドを実行して、開発ツールを実行してください。
++
+[source, bash]
+----
 npm start
-```
+----
 
 ### 開発ライブラリのセットアップ
 
 #### jQuery
 
+##### jQuery とは
+
 jQuery は、HTML ドキュメントを操作するための JavaScript ライブラリです。以下の手順で jQuery をセットアップしてください。
 
 ##### jQuery の設定
 
-1. HTMLにタグを追加して、CDNからjQueryを読み込む
-
-```html
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-```
-
-2. WebpackでローカルにインストールされたjQueryを使わないように指示する
-
-``` webpack.config.js
+. HTMLにタグを追加して、CDNからjQueryを読み込む
++
+[source, html]
+----
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/...jquery.min.js" integrity="sha.-v.J.aYy.wqLDIrZUI/.qeoQieOmAZNXBeQyjo.adnwR+8ZaIJVT8EE.yI.V8e.8PP..pQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+----
++
+. WebpackでローカルにインストールされたjQueryを使わないように指示する
++
+`webpack.config.js`
++
+[source, javascript]
+---- 
 module.exports = {
   // 他の設定は省略
   externals: {
     jquery: '$',
   }
 }
-```
-
-3. Webpackで$をグローバルであるように全てのファイルに指示する
-
-``` webpack.config.js
+----
++
+. Webpackで$をグローバルであるように全てのファイルに指示する
++
+`webpack.config.js`
++
+[source, javascript]
+---- 
 module.exports = {
   // 他の設定は省略
   plugins: [
@@ -1018,17 +1115,21 @@ module.exports = {
     }),
   ],
 }
-```
-
-4. Type定義のインストール
-
-```bash
+----
++
+. Type定義のインストール
++
+[source, bash]
+----
 npm install --save-dev @types/jquery
-```
-
-5. Global変数の型定義を追加
-
-```index.d.ts
+----
++
+. Global変数の型定義を追加
++
+`index.d.ts`
++
+[source, typescript]
+----
 // Global definition
 import * as _ from "lodash";
 
@@ -1040,24 +1141,29 @@ declare global {
     $: JQueryStatic;
   }
 }
-```
-
+----
 
 #### Lodash
+
+##### Lodash とは
 
 Lodash は、JavaScript のユーティリティライブラリです。以下の手順で Lodash をセットアップしてください。
 
 ##### Lodash の設定
 
-1. HTMLにタグを追加して、CDNからLodashを読み込む
-
-```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js" referrerpolicy="no-referrer"></script>
-```
-
-2. WebpackでローカルにインストールされたLodashを使わないように指示する
-
-``` webpack.config.js
+. HTMLにタグを追加して、CDNからLodashを読み込む
++
+[source, html]
+----
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/....lodash.min.js" referrerpolicy="no-referrer"></script>
+----
++
+. WebpackでローカルにインストールされたLodashを使わないように指示する
++
+`webpack.config.js`
++
+[source, javascript]
+----
 module.exports = {
   // 他の設定は省略
   externals: {
@@ -1065,11 +1171,14 @@ module.exports = {
     lodash: "_",
   },
 }
-```
-
-3. Webpackで_をグローバルであるように全てのファイルに指示する
-
-``` webpack.config.js
+----
++
+. Webpackで_をグローバルであるように全てのファイルに指示する
++
+`webpack.config.js`
++
+[source, javascript]
+----
 module.exports = {
   // 他の設定は省略
   plugins: [
@@ -1082,17 +1191,21 @@ module.exports = {
     }),
   ],
 }
-```
-
-4. Type定義のインストール
-
-```bash
+----
++
+. Type定義のインストール
++
+[source, bash]
+----
 npm install --save-dev @types/lodash
-```
-
-5. Global変数の型定義を追加
-
-```index.d.ts
+----
++
+. Global変数の型定義を追加
++
+`index.d.ts`
++
+[source, typescript]
+----
 // Global definition
 import * as _ from "lodash";
 
@@ -1106,25 +1219,29 @@ declare global {
     _: _.LoDashStatic;
   }
 }
-```
+----
 
-#### Loadsh/fpの設定
+#### Loadsh/fp
+
+##### Loadsh/fp とは
 
 lodash/fp は、Lodash の関数型プログラミング版です。以下の手順で lodash/fp をセットアップしてください。
 
-1. HTMLにタグを追加して、CDNからlodash/fpを読み込む
+##### Loadsh/fpの設定
 
-```html
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash-fp/0.10.4/lodash-fp.min.js" integrity="sha512-CVmmJBSbtBlLKXTezdj4ZwjIXQpnWr934eJlR6r3sUIwUV/5ZLa4tfI5Ge7Dth/TJD0h79X0PGycINUu1pv/bg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+. HTMLにタグを追加して、CDNからlodash/fpを読み込む
++
+[source,html]
+----
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash-fp/0....lodash-fp.min.js" integrity="sha.-CVmmJBSbtBlLKXTezdj.wjIXQpnWr9.eJlR..UIwUV/.La.fI.e.th/TJD0h.X0PGycINUu.v/bg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script>
     window.fp = _.noConflict()
   </script>
-```
-
-2. Global変数の型定義を追加
-
-```index.d.ts
-// Global definition
+----
+. Global変数の型定義を追加
++
+[source,index.d.ts]
+----
 import * as _ from "lodash";
 
 declare global {
@@ -1141,4 +1258,4 @@ declare global {
     fp: fp.lodashFp;
   }
 }
-```
+----

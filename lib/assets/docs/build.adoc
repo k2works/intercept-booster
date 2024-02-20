@@ -980,3 +980,165 @@ dev.render({ contents, usecase, uml, erd });
 ```bash
 npm start
 ```
+
+### 開発ライブラリのセットアップ
+
+#### jQuery
+
+jQuery は、HTML ドキュメントを操作するための JavaScript ライブラリです。以下の手順で jQuery をセットアップしてください。
+
+##### jQuery の設定
+
+1. HTMLにタグを追加して、CDNからjQueryを読み込む
+
+```html
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+```
+
+2. WebpackでローカルにインストールされたjQueryを使わないように指示する
+
+``` webpack.config.js
+module.exports = {
+  // 他の設定は省略
+  externals: {
+    jquery: '$',
+  }
+}
+```
+
+3. Webpackで$をグローバルであるように全てのファイルに指示する
+
+``` webpack.config.js
+module.exports = {
+  // 他の設定は省略
+  plugins: [
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+    }),
+  ],
+}
+```
+
+4. Type定義のインストール
+
+```bash
+npm install --save-dev @types/jquery
+```
+
+5. Global変数の型定義を追加
+
+```index.d.ts
+// Global definition
+import * as _ from "lodash";
+
+declare global {
+  // 他の設定は省略
+  // const $: JQueryStatic // jqueryはすでにGlobalに定義済み
+  interface Window {
+    // W <= 大文字, Window Classの方を拡張する
+    $: JQueryStatic;
+  }
+}
+```
+
+
+#### Lodash
+
+Lodash は、JavaScript のユーティリティライブラリです。以下の手順で Lodash をセットアップしてください。
+
+##### Lodash の設定
+
+1. HTMLにタグを追加して、CDNからLodashを読み込む
+
+```html
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js" referrerpolicy="no-referrer"></script>
+```
+
+2. WebpackでローカルにインストールされたLodashを使わないように指示する
+
+``` webpack.config.js
+module.exports = {
+  // 他の設定は省略
+  externals: {
+    jquery: "$",
+    lodash: "_",
+  },
+}
+```
+
+3. Webpackで_をグローバルであるように全てのファイルに指示する
+
+``` webpack.config.js
+module.exports = {
+  // 他の設定は省略
+  plugins: [
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery",
+      "window.$": "jquery",
+      _: "lodash",
+      "window._": "lodash",
+    }),
+  ],
+}
+```
+
+4. Type定義のインストール
+
+```bash
+npm install --save-dev @types/lodash
+```
+
+5. Global変数の型定義を追加
+
+```index.d.ts
+// Global definition
+import * as _ from "lodash";
+
+declare global {
+  // 他の設定は省略
+  const _: _.LoDashStatic;
+  // const $: JQueryStatic // jqueryはすでにGlobalに定義済み
+  interface Window {
+    // W <= 大文字, Window Classの方を拡張する
+    $: JQueryStatic;
+    _: _.LoDashStatic;
+  }
+}
+```
+
+#### loadsh/fpの設定
+
+lodash/fp は、Lodash の関数型プログラミング版です。以下の手順で lodash/fp をセットアップしてください。
+
+1. HTMLにタグを追加して、CDNからlodash/fpを読み込む
+
+```html
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash-fp/0.10.4/lodash-fp.min.js" integrity="sha512-CVmmJBSbtBlLKXTezdj4ZwjIXQpnWr934eJlR6r3sUIwUV/5ZLa4tfI5Ge7Dth/TJD0h79X0PGycINUu1pv/bg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    window.fp = _.noConflict()
+  </script>
+```
+
+2. Global変数の型定義を追加
+
+```index.d.ts
+// Global definition
+import * as _ from "lodash";
+
+declare global {
+  // 他の設定は省略
+  const _: _.LoDashStatic;
+  // const $: JQueryStatic // jqueryはすでにGlobalに定義済み
+  interface Window {
+    // W <= 大文字, Window Classの方を拡張する
+    $: JQueryStatic;
+    _: _.LoDashStatic;
+  }
+  const fp: fp.lodashFp;
+  interface Window {
+    fp: fp.lodashFp;
+  }
+}
+```

@@ -1108,7 +1108,7 @@ declare global {
 }
 ```
 
-#### loadsh/fpの設定
+#### Loadsh/fpの設定
 
 lodash/fp は、Lodash の関数型プログラミング版です。以下の手順で lodash/fp をセットアップしてください。
 

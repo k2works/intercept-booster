@@ -306,3 +306,190 @@ describe("Lodashの基本的な使い方", () => {
     });
   });
 });
+
+describe("Lodash/fpの基本的な使い方", () => {
+  const fp = require("lodash/fp");
+
+  describe("リスト要素の追加・取得など", () => {
+    const dataList = ["A", "B", "C", "D", "E"];
+
+    test("fp.range", () => {
+      expect(fp.range(0)(10)).toEqual([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    });
+
+    test("fp.concat (append)", () => {
+      expect(fp.concat(dataList)("Z")).toEqual(["A", "B", "C", "D", "E", "Z"]);
+    });
+
+    test("fp.concat (prepend)", () => {
+      expect(fp.concat(["Z"])(dataList)).toEqual([
+        "Z",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+      ]);
+    });
+
+    test("fp.head (first)", () => {
+      expect(fp.head(dataList)).toBe("A");
+    });
+
+    test("fp.last", () => {
+      expect(fp.last(dataList)).toBe("E");
+    });
+
+    test("fp.tail (rest)", () => {
+      expect(fp.tail(dataList)).toEqual(["B", "C", "D", "E"]);
+    });
+
+    test("fp.take", () => {
+      expect(fp.take(2)(dataList)).toEqual(["A", "B"]);
+    });
+
+    test("fp.drop", () => {
+      expect(fp.drop(2)(dataList)).toEqual(["C", "D", "E"]);
+    });
+
+    test("fp.takeRight (take-last)", () => {
+      expect(fp.takeRight(2)(dataList)).toEqual(["D", "E"]);
+    });
+
+    test("fp.dropRight (drop-last)", () => {
+      expect(fp.dropRight(2)(dataList)).toEqual(["A", "B", "C"]);
+    });
+
+    test("fp.takeWhile (take-while)", () => {
+      expect(fp.takeWhile((data: string) => data !== "C")(dataList)).toEqual([
+        "A",
+        "B",
+      ]);
+    });
+
+    test("fp.dropWhile (drop-while)", () => {
+      expect(fp.dropWhile((data: string) => data !== "C")(dataList)).toEqual([
+        "C",
+        "D",
+        "E",
+      ]);
+    });
+  });
+
+  describe("filter/map/reduce", () => {
+    const dataList = [1, 2, 3, 4, 5];
+
+    test("fp.filter", () => {
+      expect(fp.filter((data: number) => data % 2 === 0)(dataList)).toEqual([
+        2, 4,
+      ]);
+    });
+
+    test("fp.map", () => {
+      expect(fp.map((data: number) => data * 2)(dataList)).toEqual([
+        2, 4, 6, 8, 10,
+      ]);
+    });
+
+    test("fp.reduce", () => {
+      expect(
+        fp.reduce((sum: number, data: number) => sum + data, 0)(dataList)
+      ).toBe(15);
+    });
+  });
+
+  describe("高度なリスト操作", () => {
+    type data = { user: string; age: number };
+    const dataList = [
+      { name: "Alice", age: 20 },
+      { name: "Bob", age: 30 },
+      { name: "Charlie", age: 40 },
+    ];
+
+    test("fp.sortBy", () => {
+      expect(fp.sortBy("age")(dataList)).toEqual([
+        { name: "Alice", age: 20 },
+        { name: "Bob", age: 30 },
+        { name: "Charlie", age: 40 },
+      ]);
+    });
+
+    test("fp.groupBy", () => {
+      expect(fp.groupBy((data: data) => data.age >= 30)(dataList)).toEqual({
+        true: [
+          { name: "Bob", age: 30 },
+          { name: "Charlie", age: 40 },
+        ],
+        false: [{ name: "Alice", age: 20 }],
+      });
+    });
+  });
+
+  describe("オブジェクトに対する操作", () => {
+    const dataObject = { name: "Alice", age: 20, city: "New York" };
+
+    test("fp.pick", () => {
+      expect(fp.pick(["name", "age"])(dataObject)).toEqual({
+        name: "Alice",
+        age: 20,
+      });
+    });
+
+    test("fp.omit", () => {
+      expect(fp.omit(["city"])(dataObject)).toEqual({ name: "Alice", age: 20 });
+    });
+
+    test("fp.get", () => {
+      expect(fp.get("name")(dataObject)).toBe("Alice");
+    });
+
+    test("fp.set", () => {
+      expect(fp.set("age", 30)(dataObject)).toEqual({
+        name: "Alice",
+        age: 30,
+        city: "New York",
+      });
+    });
+
+    test("fp.update", () => {
+      expect(
+        fp.update("name", (name: string) => name.toUpperCase())(dataObject)
+      ).toEqual({
+        name: "ALICE",
+        age: 20,
+        city: "New York",
+      });
+    });
+
+    test("fp.assign", () => {
+      expect(fp.assign({ city: "Los Angeles" })(dataObject)).toEqual({
+        name: "Alice",
+        age: 20,
+        city: "New York",
+      });
+    });
+
+    test("fp.merge", () => {
+      expect(
+        fp.merge({ city: "Los Angeles", country: "USA" })(dataObject)
+      ).toEqual({
+        name: "Alice",
+        age: 20,
+        city: "New York",
+        country: "USA",
+      });
+    });
+
+    test("fp.mergeWith", () => {
+      const customizer = (objValue: number[], srcValue: number[]) => {
+        return fp.isArray(objValue) ? objValue.concat(srcValue) : undefined;
+      };
+      const object = { a: [1], b: [2] };
+      const other = { a: [3], b: [4] };
+      expect(fp.mergeWith(customizer, other)(object)).toEqual({
+        a: [3, 1],
+        b: [4, 2],
+      });
+    });
+  });
+});

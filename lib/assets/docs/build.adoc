@@ -1079,7 +1079,7 @@ jQuery は、HTML ドキュメントを操作するための JavaScript ライ�
 
 ##### jQuery の設定
 
-. HTMLにタグを追加して、CDNからjQueryを読み込む
+. HTMLにタグを追加して、link:https://cdnjs.com/[CDN] からjQueryを読み込む
 +
 [source, html]
 ----
@@ -1151,7 +1151,7 @@ Lodash は、JavaScript のユーティリティライブラリです。以下�
 
 ##### Lodash の設定
 
-. HTMLにタグを追加して、CDNからLodashを読み込む
+. HTMLにタグを追加して、link:https://cdnjs.com/[CDN] からLodashを読み込む
 +
 [source, html]
 ----
@@ -1229,7 +1229,7 @@ lodash/fp は、Lodash の関数型プログラミング版です。以下の手
 
 ##### Loadsh/fpの設定
 
-. HTMLにタグを追加して、CDNからlodash/fpを読み込む
+. HTMLにタグを追加して、link:https://cdnjs.com/[CDN] からlodash/fpを読み込む
 +
 [source,html]
 ----
@@ -1259,3 +1259,87 @@ declare global {
   }
 }
 ----
+
+### Moment.js
+
+#### Moment.js とは
+
+Moment.js は、日付と時刻を操作するための JavaScript ライブラリです。以下の手順で Moment.js をセットアップしてください。
+
+#### Moment.js の設定
+
+. HTMLにタグを追加して、link:https://cdnjs.com/[CDN] からMoment.jsを読み込む
++
+[source,html]
+----
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
+----
++
+. WebpackでローカルにインストールされたMoment.jsを使わないように指示する
++
+`webpack.config.js`
++
+[source,javascript]
+----
+module.exports = {
+  // 他の設定は省略
+  externals: {
+    jquery: "$",
+    lodash: "_",
+    moment: "moment",
+  },
+}
+----
++
+. Webpackでmomentをグローバルであるように全てのファイルに指示する
++
+`webpack.config.js`
++
+[source,javascript]
+----
+module.exports = {
+  // 他の設定は省略
+  plugins: [
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery",
+      "window.$": "jquery",
+      _: "lodash",
+      "window._": "lodash",
+      moment: "moment",
+      "window.moment": "moment",
+    }),
+  ],
+}
+----
++
+. Type定義のインストール
++
+[source,bash]
+----
+npm install --save-dev @types/moment
+----
++
+. Global変数の型定義を追加
++
+`index.d.ts`
++
+[source,typescript]
+----
+// Global definition
+import * as _ from "lodash";
+import * as moment from "moment";
+
+declare global {
+  // 他の設定は省略
+  const _: _.LoDashStatic;
+  // const $: JQueryStatic // jqueryはすでにGlobalに定義済み
+  interface Window {
+    // W <= 大文字, Window Classの方を拡張する
+    $: JQueryStatic;
+    _: _.LoDashStatic;
+    moment: moment.Moment;
+  }
+}
+----
+

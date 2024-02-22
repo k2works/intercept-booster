@@ -1260,13 +1260,13 @@ declare global {
 }
 ----
 
-### Moment.js
+#### Moment.js
 
-#### Moment.js とは
+##### Moment.js とは
 
 Moment.js は、日付と時刻を操作するための JavaScript ライブラリです。以下の手順で Moment.js をセットアップしてください。
 
-#### Moment.js の設定
+##### Moment.js の設定
 
 . HTMLにタグを追加して、link:https://cdnjs.com/[CDN] からMoment.jsを読み込む
 +

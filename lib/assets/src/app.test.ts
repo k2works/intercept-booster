@@ -498,6 +498,16 @@ describe("Moment.jsの基本的な使い方", () => {
   const moment = require("moment/moment");
   require("moment/locale/ja");
 
+  const originalNow = moment.now;
+
+  beforeEach(() => {
+    moment.now = () => new Date("2024-01-01T00:00:00Z").valueOf();
+  });
+
+  afterEach(() => {
+    moment.now = originalNow;
+  });
+
   test("moment", () => {
     expect(moment("2020-01-01").format("YYYY/MM/DD")).toBe("2020/01/01");
   });

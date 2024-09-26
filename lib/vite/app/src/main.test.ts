@@ -1,5 +1,4 @@
-import * as _ from "lodash";
-
+import _ from "lodash";
 describe("Lodashの基本的な使い方", () => {
 
   describe("リスト要素の追加・取得など", () => {
@@ -301,8 +300,8 @@ describe("Lodashの基本的な使い方", () => {
   });
 });
 
+import * as fp from 'lodash/fp'
 describe("Lodash/fpの基本的な使い方", () => {
-  const fp = require("lodash/fp");
 
   describe("リスト要素の追加・取得など", () => {
     const dataList = ["A", "B", "C", "D", "E"];
@@ -488,9 +487,13 @@ describe("Lodash/fpの基本的な使い方", () => {
   });
 });
 
+import moment from 'moment/moment';
+import 'moment/locale/ja';
+const initializeMoment = (): void => {
+  moment.locale("ja");
+}
 describe("Moment.jsの基本的な使い方", () => {
-  const moment = require("moment/moment");
-  require("moment/locale/ja");
+  initializeMoment();
 
   const originalNow = moment.now;
 

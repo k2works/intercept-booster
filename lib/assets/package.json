@@ -63,16 +63,6 @@
     "webpack-cli": "^5.0.1",
     "webpack-dev-server": "^4.13.1"
   },
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "ts"
-    ],
-    "testMatch": [
-      "**/**/*.test.js",
-      "**/**/*.test.ts"
-    ]
-  },
   "dependencies": {
     "http-server": "^14.1.1"
   }

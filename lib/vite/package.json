@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "gulp server",
+    "start": "cd app && npm run dev",
     "tasks": "gulp --tasks",
     "docs": "gulp docs",
     "slide": "gulp slides"

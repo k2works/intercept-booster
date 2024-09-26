@@ -9,8 +9,6 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "gulp": "^5.0.0",
-    "gulp-vite": "^1.2.0",
     "typescript": "^5.5.3",
     "vite": "^5.4.1"
   }

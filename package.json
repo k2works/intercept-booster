@@ -1,6 +1,6 @@
 {
   "name": "@k2works/intercept-booster",
-  "version": "0.16.2",
+  "version": "0.16.3",
   "description": "Stylish Legacy Application Slayer",
   "main": "main.js",
   "bin": {

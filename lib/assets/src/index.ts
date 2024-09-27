@@ -9,6 +9,19 @@ const contents = `
 ## 仕様
 `;
 
+const mindmap = `
+@startmindmap
++ root
+++ right
++++ right right
+*** right2
+-- left
+--- left left
+-- left2
+
+@endmindmap
+`;
+
 const usecase = `
 @startuml
 left to right direction
@@ -190,4 +203,14 @@ e01 |o..o{ e03
 `;
 
 const mode = "APP"; // "UI" or "API" or "DOC"
-dev.default({ contents, ui, uiModel, uiInteraction, usecase, uml, erd, mode });
+dev.default({
+  contents,
+  mindmap,
+  ui,
+  uiModel,
+  uiInteraction,
+  usecase,
+  uml,
+  erd,
+  mode,
+});
